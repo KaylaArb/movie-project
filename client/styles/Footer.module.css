@@ -1,0 +1,27 @@
+.footer {
+    width: 100%;
+    height: 125px;
+    background-color: white;
+    border-top: 1px solid #eaeaea;
+}
+
+/*styles the content inside the footer*/
+.footer .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.footer .content p {
+    color: #4F4F51;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.footer .content .logo {
+    height: 55px;
+    width: auto;
+}

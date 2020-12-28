@@ -15,7 +15,6 @@ public class DiscoverTvService {
     private RestTemplate restTemplate;
     private ArrayList<Show> tvShows;
 
-
     public DiscoverTvService(@Value("${API_KEY}") String apiKey, @Value("${URL}") String url, RestTemplate restTemplate) {
         this.apiKey = apiKey;
         this.url = url;
@@ -29,11 +28,12 @@ public class DiscoverTvService {
         return discoverTv;
     }
 
+    // discoverTv.getTotal_pages()
     private ArrayList<Show> setTvShows() {
         ArrayList<Show> showList = new ArrayList<>();
         DiscoverTv discoverTv = callApi(1);
         showList.addAll(discoverTv.getResults());
-        while (discoverTv.getPage() < discoverTv.getTotal_pages()) {
+        while (discoverTv.getPage() < 10) {
             discoverTv.setPage(discoverTv.getPage() + 1);
             discoverTv = callApi(discoverTv.getPage());
             showList.addAll(discoverTv.getResults());
@@ -45,4 +45,6 @@ public class DiscoverTvService {
     public ArrayList<Show> getTvShows() {
         return tvShows;
     }
+
+
 }
