@@ -39,7 +39,6 @@
     flex-direction: row;
     width: 50%;
     height: auto;
-    /*flex: 1;*/
 }
 
 .searchInput {
@@ -57,7 +56,7 @@
 .clearButton {
     width: 20px;
     height: 20px;
-    /*background-image: url('cancel.svg');*/
+    background-image: url('../public/cancel.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 60%;
@@ -67,14 +66,13 @@
     right: 45px;
     top: 8px;
     cursor: pointer;
-
 }
 
 .formButton {
     width: 45px;
     height: 37px;
     cursor: pointer;
-    /*background-image: url('magnifying-glass.svg');*/
+    background-image: url('../public/magnifyingGlass.svg');
     background-color: #F5F5F5;
     background-position: center;
     background-repeat: no-repeat;
@@ -163,7 +161,5 @@
     .selectInput {
         margin-top: 15px;
     }
-
-
 
 }
