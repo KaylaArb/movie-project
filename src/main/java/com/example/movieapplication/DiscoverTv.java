@@ -9,6 +9,7 @@ public class DiscoverTv {
     private Integer page;
     private Integer total_results;
     private Integer total_pages;
+    private Integer page_results;
     private ArrayList<Show> results;
 
     public DiscoverTv() {
@@ -20,6 +21,11 @@ public class DiscoverTv {
         this.total_results = total_results;
         this.total_pages = total_pages;
         this.results = new ArrayList<Show>();
+        this.page_results = 0;
+    }
+
+    public Integer getPage_results() {
+        return page_results;
     }
 
     public Integer getPage() {
@@ -52,5 +58,6 @@ public class DiscoverTv {
 
     public void setResults(ArrayList<Show> results) {
         this.results = results;
+        this.page_results = results.size();
     }
 }
