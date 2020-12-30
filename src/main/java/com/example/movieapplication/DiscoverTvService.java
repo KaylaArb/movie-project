@@ -13,23 +13,19 @@ public class DiscoverTvService {
     private String apiKey;
     private String url;
     private RestTemplate restTemplate;
-    private ArrayList<Show> tvShows;
 
     public DiscoverTvService(@Value("${API_KEY}") String apiKey, @Value("${URL}") String url, RestTemplate restTemplate) {
         this.apiKey = apiKey;
         this.url = url;
         this.restTemplate = restTemplate;
-        this.tvShows = setTvShows();
     }
 
-    private DiscoverTv callApi(Integer page) {
+    public DiscoverTv callApi(Integer page) {
         String ApiUrl = url + apiKey + "&page=" + page;
-        DiscoverTv discoverTv = restTemplate.getForObject(ApiUrl, DiscoverTv.class);
-        return discoverTv;
+        return restTemplate.getForObject(ApiUrl, DiscoverTv.class);
     }
 
-    // discoverTv.getTotal_pages()
-    private ArrayList<Show> setTvShows() {
+    public DiscoverTv getAllTvShows() {
         ArrayList<Show> showList = new ArrayList<>();
         DiscoverTv discoverTv = callApi(1);
         showList.addAll(discoverTv.getResults());
@@ -39,12 +35,10 @@ public class DiscoverTvService {
             showList.addAll(discoverTv.getResults());
         }
         System.out.println("Size of playlist = " + showList.size());
-        return showList;
+        discoverTv.setResults(showList);
+        return discoverTv;
     }
 
-    public ArrayList<Show> getTvShows() {
-        return tvShows;
-    }
 
 
 }
