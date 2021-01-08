@@ -35,9 +35,14 @@ public class MainController {
         return discoverTvService.findShow(showName);
     }
 
-    @GetMapping("/filter")
-    public DiscoverTv filterByAlphabet() {
-        return discoverTvService.filterByAlphabet();
+    @GetMapping("/filter/ascending")
+    public DiscoverTv filterByAscending() {
+        return discoverTvService.filterByAscending();
+    }
+
+    @GetMapping("/filter/descending")
+    public DiscoverTv filterByADescending() {
+        return discoverTvService.filterByDescending();
     }
 
     @GetMapping("/filter/high_rating")
@@ -61,4 +66,4 @@ public class MainController {
     }
 
 
-};
+}

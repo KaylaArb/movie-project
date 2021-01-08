@@ -12,7 +12,8 @@ export default function Home({shows, show}) {
     const [searchValue, setSearchValue] = useState('');
     const [homePage, setHomePage] = useState(true);
     const [forcePage, setForcePage] = useState(null);
-    const filters = ["Top Rated", "Lowest Rated", "Kayla's Recommended", "Descending", "Ascending"]
+    let filters = [{name :"Choose a Filter...", value: null }, {name :"Top Rated", value:"high_rating" },{name :"Lowest Rated", value:"low_rating"}, {name:"Popularity", value:"popularity"} ]
+    let filterButtons = [{name :"Ascending", value:"ascending" }, {name :"Descending", value:"descending" }]
 
     const handlePagination = page => {
         const path = router.pathname
@@ -57,9 +58,14 @@ export default function Home({shows, show}) {
         setSearchValue('')
     };
 
-    const backHome = () => {
-        handlePagination(1)
-
+    const favourites = (value) => {
+        const path = router.pathname
+        const query = router.query
+        query.favourites = value
+        router.push({
+            pathname: path,
+            query: query,
+        }).then(() => setHomePage(false));
     }
 
     return (
@@ -93,9 +99,17 @@ export default function Home({shows, show}) {
                             onClick={handleSearch}
                         />
                     </div>
-                    <select className={styles.selectInput}>
+                    <div>
+                        <a onClick={() => favourites("favourites")} className={styles.favourites}>Kayla's Favourites</a>
+                    </div>
+                    <div>
+                        {filterButtons.map((filter) => (
+                            <button type="submit" value={filter.value} id="buttonFilter" onClick={() => buttonFilter(filter.value)} className={styles.filterButtons}>{filter.name === "Descending" ? <p>˅</p> : <p>˄</p>} </button>
+                        ))}
+                    </div>
+                    <select id="filter" className={styles.selectInput} onChange={filter}>
                         {filters.map((filter) => (
-                            <option value={filter} key={filter}>{filter}</option>
+                            <option value={filter.value} key={filter.value} >{filter.name}</option>
                         ))}
                     </select>
                 </div>
@@ -135,16 +149,34 @@ export default function Home({shows, show}) {
 export async function getServerSideProps({query}) {
     const page = query.page || 1
     const search = query.search || null
+    const favourites = query.favourites || null
     console.log("this is page number = " + page)
     console.log("this is search result = " + search)
-    if(search == null) {
+    if(search === null && favourites === null) {
         const shows = await fetch(`http://localhost:8080/api/page=${page}`).then(r => r.json())
         return {props: {shows}}
-    } else {
+    } else if(search) {
         const show = await fetch(`http://localhost:8080/api/search=${search}`).then(r => r.json())
         return {props: {show}}
+    } else if(favourites) {
+        const show = await fetch(`http://localhost:8080/api/filter/favourites`).then(r => r.json())
+        return {props: {show}}
     }
+}
 
+function filter() {
+    let value = document.getElementById("filter").value;
+    fetch("http://localhost:8080/api/filter/" + value)
+        .then((response) => response.json())
+        .then( response => {
+            router.reload(window.location.pathname);})
+}
 
+function buttonFilter(buttonValue) {
+    let value = buttonValue;
+    fetch("http://localhost:8080/api/filter/" + value)
+        .then((response) => response.json())
+        .then( response => {
+            router.reload(window.location.pathname);})
 }
 
