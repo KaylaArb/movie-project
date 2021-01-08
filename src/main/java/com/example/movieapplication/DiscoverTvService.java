@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 @Service
@@ -33,9 +34,8 @@ public class DiscoverTvService {
     }
 
     public DiscoverTv getAllTvShows() {
-        ArrayList<Show> showList = new ArrayList<>();
         DiscoverTv discoverTv = callApi(1);
-        showList.addAll(discoverTv.getResults());
+        ArrayList<Show> showList = new ArrayList<>(discoverTv.getResults());
         while (discoverTv.getPage() < discoverTv.getTotal_pages()) {
             discoverTv.setPage(discoverTv.getPage() + 1);
             discoverTv = callApi(discoverTv.getPage());
@@ -58,19 +58,28 @@ public class DiscoverTvService {
     }
 
     public ArrayList<Show> findShow(String name) {
-        ArrayList<Show> result = discoverTvs
+        return discoverTvs
                 .getResults()
                 .stream()
                 .filter(show -> show.getName().toLowerCase().contains(name.toLowerCase()))
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-        return result;
     }
 
-    public DiscoverTv filterByAlphabet() {
+    public DiscoverTv filterByAscending() {
         ArrayList<Show> result = discoverTvs
                 .getResults()
                 .stream()
                 .sorted(Show::compareTo)
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        discoverTvs.setResults(result);
+        return discoverTvs;
+    }
+
+    public DiscoverTv filterByDescending() {
+        ArrayList<Show> result = discoverTvs
+                .getResults()
+                .stream()
+                .sorted(Collections.reverseOrder(Show::compareTo))
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
         discoverTvs.setResults(result);
         return discoverTvs;
