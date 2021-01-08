@@ -1,10 +1,10 @@
 package com.example.movieapplication;
 
+import com.example.movieapplication.models.Show;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api")
@@ -17,14 +17,24 @@ public class MainController {
         this.discoverTvService = discoverTvService;
     }
 
-
     @GetMapping("/get_all")
-    public DiscoverTv getAll() {
-        return discoverTvService.getAllTvShows();
+    public ArrayList<Show> getAll() {
+        return discoverTvService.getDiscoverTvs();
     }
 
     @GetMapping("/page={pageNumber}")
     public DiscoverTv getPageResults(@PathVariable Integer pageNumber) {
         return discoverTvService.callApi(pageNumber);
     }
-}
+
+    @GetMapping("/search={showName}")
+    public ArrayList<Show> findShow(@PathVariable String showName) {
+        return discoverTvService.findShow(showName);
+    }
+
+    @GetMapping("/filter")
+    public ArrayList<Show> filterByAlphabet() {
+        return discoverTvService.filterByAlphabet();
+    }
+
+};
