@@ -2,7 +2,10 @@ package com.example.movieapplication;
 
 import com.example.movieapplication.models.Show;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
@@ -18,13 +21,13 @@ public class MainController {
     }
 
     @GetMapping("/get_all")
-    public ArrayList<Show> getAll() {
+    public DiscoverTv getAll() {
         return discoverTvService.getDiscoverTvs();
     }
 
     @GetMapping("/page={pageNumber}")
-    public DiscoverTv getPageResults(@PathVariable Integer pageNumber) {
-        return discoverTvService.callApi(pageNumber);
+    public DiscoverTv getPage(@PathVariable Integer pageNumber) {
+        return discoverTvService.getPage(pageNumber);
     }
 
     @GetMapping("/search={showName}")
@@ -33,8 +36,29 @@ public class MainController {
     }
 
     @GetMapping("/filter")
-    public ArrayList<Show> filterByAlphabet() {
+    public DiscoverTv filterByAlphabet() {
         return discoverTvService.filterByAlphabet();
     }
+
+    @GetMapping("/filter/high_rating")
+    public DiscoverTv filterByTopRating() {
+        return discoverTvService.filterByTopRating();
+    }
+
+    @GetMapping("/filter/low_rating")
+    public DiscoverTv filterByLowRating() {
+        return discoverTvService.filterByLowRating();
+    }
+
+    @GetMapping("/filter/favourites")
+    public ArrayList<Show> getFavourites() {
+        return discoverTvService.kaylaFavourites();
+    }
+
+    @GetMapping("/filter/popularity")
+    public DiscoverTv getPopularity() {
+        return discoverTvService.filterByPopularity();
+    }
+
 
 };

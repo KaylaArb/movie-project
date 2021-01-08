@@ -60,4 +60,5 @@ public class DiscoverTv {
         this.results = results;
         this.page_results = results.size();
     }
+
 }

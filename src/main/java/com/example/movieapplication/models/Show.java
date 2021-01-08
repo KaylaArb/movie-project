@@ -1,6 +1,6 @@
 package com.example.movieapplication.models;
 
-public class Show {
+public class Show implements Comparable<Show> {
 
     private String name;
     private Integer id;
@@ -109,4 +109,10 @@ public class Show {
     public void setOriginal_language(String original_language) {
         this.original_language = original_language;
     }
+
+    @Override
+    public int compareTo(Show name) {
+        return this.name.compareToIgnoreCase(name.getName());
+    }
+
 }
