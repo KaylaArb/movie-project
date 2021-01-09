@@ -71,8 +71,7 @@ export default function Home({shows, show}) {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Create Next App</title>
-                <link rel="icon" href="/favicon.ico"/>
+                <title>Howdy!</title>
             </Head>
             <main className={styles.main}>
                 <div className={styles.filterContainer}>
