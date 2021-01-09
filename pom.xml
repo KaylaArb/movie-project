@@ -79,12 +79,21 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>npm run start</id>
+                        <id>npm run build</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <configuration>
                             <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm run start</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run start</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -109,6 +118,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 
