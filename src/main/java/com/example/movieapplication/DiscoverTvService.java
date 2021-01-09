@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 @Service
 public class DiscoverTvService {
@@ -16,6 +14,7 @@ public class DiscoverTvService {
     private String url;
     private RestTemplate restTemplate;
     private DiscoverTv discoverTvs;
+    private static final int PAGE_SIZE = 20;
 
     public DiscoverTvService(@Value("${API_KEY}") String apiKey, @Value("${URL}") String url, RestTemplate restTemplate) {
         this.apiKey = apiKey;
@@ -47,14 +46,9 @@ public class DiscoverTvService {
     }
 
     public DiscoverTv getPage(Integer number) {
-        DiscoverTv pageResults = new DiscoverTv(number,discoverTvs.getTotal_results(),discoverTvs.getTotal_pages());
-        ArrayList<Show> showList = new ArrayList<>();
-        int num = number == 1 ? 0 : number * 10;
-        for(int i = num; i < num + 20;i++) {
-            showList.add(discoverTvs.getResults().get(i));
-        }
-        pageResults.setResults(showList);
-        return pageResults;
+        int num = number == 1 ? 0 : number * PAGE_SIZE;
+        ArrayList<Show> showList = new ArrayList<>(this.discoverTvs.getResults().subList(num, num + PAGE_SIZE));
+        return new DiscoverTv(number, this.discoverTvs.getTotal_results(), this.discoverTvs.getTotal_pages(), showList);
     }
 
     public ArrayList<Show> findShow(String name) {

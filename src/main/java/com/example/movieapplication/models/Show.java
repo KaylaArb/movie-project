@@ -115,4 +115,11 @@ public class Show implements Comparable<Show> {
         return this.name.compareToIgnoreCase(name.getName());
     }
 
+    @Override
+    public String toString() {
+        return "Show{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
