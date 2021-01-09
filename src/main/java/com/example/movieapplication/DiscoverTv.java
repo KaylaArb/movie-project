@@ -16,12 +16,12 @@ public class DiscoverTv {
         this.results = new ArrayList<Show>();
     }
 
-    public DiscoverTv(Integer page, Integer total_results, Integer total_pages) {
+    public DiscoverTv(Integer page, Integer total_results, Integer total_pages, ArrayList<Show> results) {
         this.page = page;
         this.total_results = total_results;
         this.total_pages = total_pages;
-        this.results = new ArrayList<Show>();
-        this.page_results = 0;
+        this.results = results;
+        this.page_results = results.size();
     }
 
     public Integer getPage_results() {
@@ -61,4 +61,14 @@ public class DiscoverTv {
         this.page_results = results.size();
     }
 
+    @Override
+    public String toString() {
+        return "DiscoverTv{" +
+                "page=" + page +
+                ", total_results=" + total_results +
+                ", total_pages=" + total_pages +
+                ", page_results=" + page_results +
+                ", results=" + results +
+                '}';
+    }
 }
