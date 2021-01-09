@@ -6,13 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build"
   },
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "axios": "^0.21.1",
-    "next": "10.0.4",
+    "next": "^10.0.4",
     "node-fetch": "^2.6.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-paginate": "^7.0.0"
+    "react-paginate": "^7.0.0",
+    "react-scripts-next": "^1.1.2"
   }
 }
