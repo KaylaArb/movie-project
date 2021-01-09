@@ -28,6 +28,8 @@ public class MovieApplication extends SpringBootServletInitializer {
         @Override
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**")
+                    .allowedOrigins("https://movie-frontend-test.herokuapp.com/")
+                    .allowedHeaders("https://movie-frontend-test.herokuapp.com/")
                     .allowedOrigins("http://localhost:3000")
                     .allowedHeaders("http://localhost:3000")
                     .allowedMethods("POST","GET", "DELETE");
