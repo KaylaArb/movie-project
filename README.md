@@ -14,9 +14,9 @@ Simple application built to practice filtering/sorting, unit tests hosting and p
 
 ### Prerequisites
 
-*[Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
-*[Node.js](https://nodejs.org/en/)
-*[npm](https://www.npmjs.com/)
+* [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
+* [Node.js](https://nodejs.org/en/)
+* [npm](https://www.npmjs.com/)
 
 <!-- CONTACT -->
 ## Contact
