@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Website ScreenShot](src/main/resources/static/screenshot.png)](https://movie-application-demo.herokuapp.com/)
+[![Website ScreenShot](src/main/resources/static/screenshot.png | width=150)](https://movie-application-demo.herokuapp.com/)
 
 Simple application built to practice filtering/sorting, unit tests hosting and pagination.
 
