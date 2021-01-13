@@ -1,7 +1,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://movie-application-demo.herokuapp.com/)
+[![Website ScreenShot](src/main/resources/static/screenshot.png)](https://movie-application-demo.herokuapp.com/)
 
 Simple application built to practice filtering/sorting, unit tests hosting and pagination.
 
@@ -14,9 +14,9 @@ Simple application built to practice filtering/sorting, unit tests hosting and p
 
 ### Prerequisites
 
-[Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
-[Node.js](https://nodejs.org/en/)
-
+*[Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) 
+*[Node.js](https://nodejs.org/en/)
+*[npm](https://www.npmjs.com/)
 
 <!-- CONTACT -->
 ## Contact
