@@ -1,8 +1,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="src/main/resources/static/screenshot.png" width=auto height="75%">
-[![Website ScreenShot](src/main/resources/static/screenshot.png | width=150)](https://movie-application-demo.herokuapp.com/)
+<div align="center">
+<link href="https://movie-application-demo.herokuapp.com/"><img src="src/main/resources/static/screenshot.png" width=auto height="75%"></link>
+</div>
 
 Simple application built to practice filtering/sorting, unit tests hosting and pagination.
 
