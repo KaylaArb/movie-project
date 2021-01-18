@@ -39,6 +39,12 @@
             <artifactId>thymeleaf</artifactId>
             <version>3.0.12.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-android</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 

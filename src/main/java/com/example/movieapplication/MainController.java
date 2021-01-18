@@ -1,5 +1,6 @@
 package com.example.movieapplication;
 
+import com.example.movieapplication.models.DiscoverTv;
 import com.example.movieapplication.models.Show;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

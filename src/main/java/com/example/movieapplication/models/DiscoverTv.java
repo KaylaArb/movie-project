@@ -1,6 +1,4 @@
-package com.example.movieapplication;
-
-import com.example.movieapplication.models.Show;
+package com.example.movieapplication.models;
 
 import java.util.ArrayList;
 
@@ -13,7 +11,7 @@ public class DiscoverTv {
     private ArrayList<Show> results;
 
     public DiscoverTv() {
-        this.results = new ArrayList<Show>();
+        this.results = new ArrayList<>();
     }
 
     public DiscoverTv(Integer page, Integer total_results, Integer total_pages, ArrayList<Show> results) {
