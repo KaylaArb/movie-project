@@ -24,16 +24,16 @@ public class DiscoverTvService {
         this.discoverTvs = getAllTvShows();
     }
 
-    public DiscoverTv callApi(Integer page) {
-        String ApiUrl = url + apiKey + "&page=" + page;
-        return restTemplate.getForObject(ApiUrl, DiscoverTv.class);
-    }
-
     public DiscoverTv getDiscoverTvs() {
         return discoverTvs;
     }
 
-    public DiscoverTv getAllTvShows() {
+    private DiscoverTv callApi(Integer page) {
+        String ApiUrl = url + apiKey + "&page=" + page;
+        return restTemplate.getForObject(ApiUrl, DiscoverTv.class);
+    }
+
+    private DiscoverTv getAllTvShows() {
         DiscoverTv discoverTv = callApi(1);
         ArrayList<Show> showList = new ArrayList<>(discoverTv.getResults());
         while (discoverTv.getPage() < discoverTv.getTotal_pages()) {

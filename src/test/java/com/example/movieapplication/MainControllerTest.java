@@ -38,7 +38,6 @@ class MainControllerTest {
         this.discoverTvService = discoverTvService;
     }
 
-
     @Test
     void getAll() throws Exception {
         ResultActions resultActions = this.mvc.perform(get("/api/get_all"))
@@ -47,7 +46,7 @@ class MainControllerTest {
         DiscoverTv response = objectMapper.readValue(contentAsString, DiscoverTv.class);// deserialization
         assertEquals(response.getTotal_pages(), 500);
         assertNotNull(response.getResults());
-        assert(!response.getResults().isEmpty());
+        assert (!response.getResults().isEmpty());
         assertNotNull(response);
     }
 
@@ -67,7 +66,8 @@ class MainControllerTest {
         ResultActions resultActions = this.mvc.perform(get("/api/search=" + searchValue))
                 .andExpect(status().isOk());
         String contentAsString = resultActions.andReturn().getResponse().getContentAsString();
-        ArrayList<Show> response = objectMapper.readValue(contentAsString, new TypeReference<ArrayList<Show>>() {}); // deserialization
+        ArrayList<Show> response = objectMapper.readValue(contentAsString, new TypeReference<ArrayList<Show>>() {
+        }); // deserialization
         for (Show show : response) {
             assertTrue(show.getName().toLowerCase().contains(searchValue));
         }
@@ -82,7 +82,8 @@ class MainControllerTest {
         String actual = expectedActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
         assertNotNull(actual);
-        assertEquals(expected, actual); // cannot compare lists unless they are the same because lists are only equal by identity (hashcodes), not contents. This is why we converted them both to Strings.
+        assertEquals(expected, actual); // cannot compare lists unless they are the same because lists are only equal
+        // by identity (hashcodes), not contents. This is why we converted them both to Strings.
     }
 
     @Test
@@ -102,7 +103,6 @@ class MainControllerTest {
     void filterByTopRating() throws Exception {
         DiscoverTv topRated = discoverTvService.filterByTopRating();
         String expected = objectMapper.writeValueAsString(topRated);
-        System.out.println(expected);
 
         ResultActions resultActions = this.mvc.perform(get("/api/filter/high_rating"))
                 .andExpect(status().isOk());
@@ -116,7 +116,6 @@ class MainControllerTest {
     void filterByLowRating() throws Exception {
         DiscoverTv lowRated = discoverTvService.filterByLowRating();
         String expected = objectMapper.writeValueAsString(lowRated);
-        System.out.println(expected);
 
         ResultActions resultActions = this.mvc.perform(get("/api/filter/low_rating"))
                 .andExpect(status().isOk());
@@ -131,17 +130,17 @@ class MainControllerTest {
         ResultActions resultActions = this.mvc.perform(get("/api/filter/favourites"))
                 .andExpect(status().isOk());
         String contentAsString = resultActions.andReturn().getResponse().getContentAsString();
-        ArrayList<Show> response = objectMapper.readValue(contentAsString, new TypeReference<ArrayList<Show>>() {}); // deserialization
+        ArrayList<Show> response = objectMapper.readValue(contentAsString, new TypeReference<ArrayList<Show>>() {
+        }); // deserialization
 
         assertNotNull(response);
-        assertEquals(response.size(), 17);
+        assertEquals(response.size(), 15);
     }
 
     @Test
     void getPopularity() throws Exception {
         DiscoverTv popularity = discoverTvService.filterByPopularity();
         String expected = objectMapper.writeValueAsString(popularity);
-        System.out.println(expected);
 
         ResultActions resultActions = this.mvc.perform(get("/api/filter/popularity"))
                 .andExpect(status().isOk());
